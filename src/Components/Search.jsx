@@ -11,7 +11,6 @@ function Search() {
 
   const handleSearch = useCallback((event) => {
     dispatch(setSearch(event.target.value))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

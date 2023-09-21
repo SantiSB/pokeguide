@@ -1,45 +1,16 @@
-import { useEffect } from 'react'
 import { HashRouter, Routes, Route } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { getPokemonsWithDetails, setLoading } from './actions'
-import { getPokemon } from './api'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import Layout from './Components/Layout'
 import Home from './Components/Home'
 import NotFound from './Components/NotFound'
 import Details from './Components/Details'
 import ComparisonTableLayout from './Components/ComparisonTableLayout'
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#286bb9',
-    },
-    secondary: {
-      main: '#fffbf5',
-    },
-  },
-})
+import useFetchPokemons from './hooks/useFetchPokemons'
+import theme from './themes/theme'
 
 function PokeGuide() {
-  const pokemons = useSelector((state) => state.pokemons)
-  const loading = useSelector((state) => state.loading)
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    const fetchPokemons = async () => {
-      dispatch(setLoading(true))
-
-      const pokemonsRes = await getPokemon()
-
-      await dispatch(getPokemonsWithDetails(pokemonsRes))
-      await dispatch(setLoading(false))
-    }
-    fetchPokemons()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const { pokemons, loading } = useFetchPokemons()
 
   return (
     <div>

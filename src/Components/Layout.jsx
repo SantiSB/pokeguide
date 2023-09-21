@@ -1,4 +1,3 @@
-import React from 'react'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
@@ -6,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Layout = ({ children }) => {
   return (
-    <React.Fragment>
+    <>
       <AppBar position='fixed'>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography variant='h6' color='inherit' noWrap>
@@ -33,7 +32,7 @@ const Layout = ({ children }) => {
       </AppBar>
 
       {children}
-    </React.Fragment>
+    </>
   )
 }
 

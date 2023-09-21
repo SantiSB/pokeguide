@@ -6,20 +6,10 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import FavoriteButton from './FavoriteButton'
-import { useDispatch } from 'react-redux'
-import { setFavorite } from '../actions'
+import usePokemonCardLogic from '../hooks/usePokemonCardLogic'
 
 const PokemonCard = ({ pokemon }) => {
-  const dispatch = useDispatch()
-  const types = pokemon.types
-    .map((pokemon) =>
-      pokemon.type.name.replace(/\b\w/g, (l) => l.toUpperCase())
-    )
-    .join(', ')
-
-  const handleOnFavorite = () => {
-    dispatch(setFavorite({ pokemonId: pokemon.id }))
-  }
+  const { types, handleOnFavorite } = usePokemonCardLogic(pokemon)
 
   return (
     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
